@@ -1,0 +1,7 @@
+domains Element, Set
+
+declare in: [Element Set] -> Boolean
+
+datatype N := Z | (S N)
+
+domain (Setp S)
