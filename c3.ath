@@ -1,0 +1,19 @@
+datatype N := Z | (S N)
+
+declare Plus: [N N] -> N [+]
+
+set-precedence S 350
+
+assert right-zero := (forall x . x + Z = x)
+assert right-nonzero := (forall x y . x + S y = S (x + y))
+
+conclude ((S Z + Z) = S Z) (!instance right-zero (S Z))
+
+conclude
+  ((S S Z + S S Z) = S S S S Z)
+  (!chain [
+    (S S Z + S S Z)
+    = (S (S S Z + S Z)) [right-nonzero]
+    = (S S (S S Z + Z)) [right-nonzero]
+    = (S S S S Z) [right-zero]
+  ])
