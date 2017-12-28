@@ -14,3 +14,9 @@ declare A, B: Boolean
 assert q := (A & B)
 
 (!commute-and q)
+
+define (get-conjuncts' p) :=
+  match p {
+    (a & b) => (join (get-conjuncts' a) (get-conjuncts' b))
+  | _ => [p]
+  }
