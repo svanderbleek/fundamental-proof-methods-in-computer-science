@@ -1,3 +1,5 @@
+set-flag print-var-sorts "off"
+
 datatype N := Z | (S N)
 
 declare Plus: [N N] -> N [+]
@@ -17,3 +19,28 @@ conclude
     = (S S (S S Z + Z)) [right-nonzero]
     = (S S S S Z) [right-zero]
   ])
+
+conclude
+  (x = y ==> y = x)
+  assume (x = y)
+  (!sym (x = y))
+
+conclude
+  (x = y & y = z ==> x = z)
+  assume (x = y & y = z)
+  (!tran (x = y) (y = z))
+
+declare a, b, c, d: N
+declare f: [N N] -> N
+
+conclude
+  (a = b & c = d ==> (f a c) = (f b d))
+  assume (a = b & c = d)
+  (!fcong ((f a c) = (f b d)))
+
+declare R: [N N] -> Boolean
+
+conclude
+  (a = b & c = d & a R c ==> b R d)
+  assume (a = b & c = d & a R c)
+  (!rcong (a R c) (b R d))
