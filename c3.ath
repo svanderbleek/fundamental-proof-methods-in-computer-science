@@ -57,9 +57,23 @@ define g31 :=
   (= (h (g Z (i (S Z) (i (S Z) Z))))
      (h (g Z (i (S Z) (S (i Z Z))))))
 
-define p31i := (make-term (root p31) (map (lambda (t) (i (S Z) t)) (children p31)))
-define p31g := (make-term (root p31i) (map (lambda (t) (g Z t)) (children p31i)))
-define p31h := (make-term (root p31g) (map (lambda (t) (h  t)) (children p31g)))
+define p31i :=
+  (make-term
+    (root p31)
+    (map (lambda (t) (i (S Z) t)) (children p31))
+  )
+
+define p31g :=
+  (make-term
+    (root p31i)
+    (map (lambda (t) (g Z t)) (children p31i))
+  )
+
+define p31h :=
+  (make-term
+    (root p31g)
+    (map (lambda (t) (h  t)) (children p31g))
+  )
 
 conclude g31 {
   (!fcong p31i);
